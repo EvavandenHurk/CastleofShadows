@@ -88,51 +88,85 @@ const rooms = {
   "Throne Room": {
     image: "Throne Room",
     connections: ["Entry Hallway", "Library"],
-    clue: "An inscription hinting at the coffin's location.",
+    clue: {
+      text: "An inscription hinting at the coffin's location.",
+      collected: false,
   },
   "Dungeon": {
     image: "Dungeon",
     connections: ["Entry Hallway", "Cellar"],
-    clue: "A map fragment hidden in the wall.",
+    clue: {
+      text: "A map fragment hidden in the wall.",
+      collected: false,
   },
   "Dining Room": {
     image: "Dining Room",
     connections: ["Entry Hallway", "Weapon Room"],
-    clue: "A dusty note mentioning an ancient ritual.",
+    clue: {
+      text: "A dusty note mentioning an ancient ritual.",
+      collected: false,
   },
   "Spooky Garden": {
     image: "Spooky Garden",
     connections: ["Entry Hallway", "Attic"],
-    clue: "An old statue points toward a hidden path.",
+    clue: {
+      text: "An old statue points toward a hidden path.",
+      collected: false,
   },
   "Weapon Room": {
     image: "Weapon Room",
     connections: ["Dining Room", "Library"],
-    clue: "A sword with an engraved riddle.",
+    clue: {
+      text: "A sword with an engraved riddle.",
+      collected: false,
   },
   "Cellar": {
     image: "Cellar",
     connections: ["Dungeon", "Library"],
-    clue: "An ancient key hidden in a barrel.",
+    clue: {
+      text: "An ancient key hidden in a barrel.",
+      collected: false,
   },
   "Attic": {
     image: "Attic",
     connections: ["Spooky Garden", "Library"],
-    clue: "A journal with cryptic symbols.",
+    clue: {
+      text: "A journal with cryptic symbols.",
+      collected: false,
   },
   "Library": {
     image: "Library",
     connections: ["Throne Room", "Weapon Room", "Cellar", "Attic"],
-    clue: "A tome describing the coffin's location.",
+    clue: {
+      text: "A tome describing the coffin's location.",
+      collected: false,
   },
 };
-
 
 function drawRoom(roomName) {
   const room = rooms[roomName];
   const img = images[room.image];
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+  // Display room name
+  ctx.fillStyle = "white";
+  ctx.font = `${canvas.height / 30}px Gothic`;
+  ctx.fillText(`Room: ${roomName}`, 10, canvas.height / 20);
+
+  // Show clue prompt if clue exists and hasn't been collected
+  if (room.clue && !room.clue.collected) {
+    ctx.fillText(
+      "Press 'C' to collect a clue!",
+      10,
+      canvas.height / 10
+    );
+  }
+
+  // Display collected clues
+  ctx.fillText(`Clues Found: ${gameState.cluesFound}`, 10, canvas.height / 5);
+}
 
   // Draw room image, scaled to canvas
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -173,23 +207,35 @@ function moveRoom(direction) {
 }
 
 
-// Keyboard input
 document.addEventListener("keydown", (e) => {
-  switch (e.code) {
-    case "ArrowUp":
-      moveRoom(0); // Go to the first connected room
-      break;
-    case "ArrowDown":
-      moveRoom(1); // Go to the second connected room
-      break;
-    case "ArrowLeft":
-      moveRoom(2); // Go to the third connected room
-      break;
-    case "ArrowRight":
-      moveRoom(3); // Go to the fourth connected room
-      break;
+  // Clue collection logic
+  if (e.code === "KeyC") {
+    const currentRoom = rooms[gameState.currentRoom];
+    if (currentRoom.clue && !currentRoom.clue.collected) {
+      currentRoom.clue.collected = true; // Mark clue as collected
+      gameState.cluesFound += 1; // Increment clue count
+
+      console.log(`Clue collected: ${currentRoom.clue.text}`);
+      alert(`You collected a clue: ${currentRoom.clue.text}`);
+      
+      drawRoom(gameState.currentRoom); // Refresh room to update UI
+
+      // Check for victory condition
+      if (gameState.cluesFound >= 5) {
+        alert("You have gathered enough clues to find the coffin!");
+        // Unlock the Coffin Room
+        rooms["Library"].connections.push("Coffin Room");
+        rooms["Coffin Room"] = {
+          image: "Coffin Room",
+          connections: ["Library"],
+          clue: null,
+        };
+        console.log("The Coffin Room is now unlocked!");
+      }
+    }
   }
 });
+
 
 // Start the game
 drawRoom(gameState.currentRoom);
