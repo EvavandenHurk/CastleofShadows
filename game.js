@@ -2,8 +2,36 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 800;
-canvas.height = 600;
+// Desired aspect ratio
+const ASPECT_RATIO = 4 / 3; // 800x600 ratio
+let canvasWidth, canvasHeight;
+
+function resizeCanvas() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  // Maintain aspect ratio
+  if (windowWidth / windowHeight > ASPECT_RATIO) {
+    canvasHeight = windowHeight;
+    canvasWidth = canvasHeight * ASPECT_RATIO;
+  } else {
+    canvasWidth = windowWidth;
+    canvasHeight = canvasWidth / ASPECT_RATIO;
+  }
+
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
+  // Redraw current room after resizing
+  drawRoom(gameState.currentRoom);
+}
+
+// Resize canvas on window resize
+window.addEventListener("resize", resizeCanvas);
+
+// Initialize canvas size
+resizeCanvas();
+
 
 // Load assets
 const images = {
@@ -80,22 +108,29 @@ const rooms = {
 };
 
 
-// Draw room
 function drawRoom(roomName) {
   const room = rooms[roomName];
   const img = images[room.image];
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw room image, scaled to canvas
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
   // Display text
   ctx.fillStyle = "white";
-  ctx.font = "20px Gothic";
-  ctx.fillText(`Room: ${roomName}`, 10, 30);
+  ctx.font = `${canvasHeight / 30}px Gothic`; // Scaled font size
+  ctx.fillText(`Room: ${roomName}`, 10, canvasHeight / 20);
 
   if (gameState.visitedRooms[roomName] && room.clue) {
-    ctx.fillText("Clue: " + room.clue, 10, 60);
+    ctx.fillText(
+      "Clue: " + room.clue,
+      10,
+      canvasHeight / 10
+    );
   }
 }
+
 
 // Move between rooms
 function moveRoom(direction) {
