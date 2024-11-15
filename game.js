@@ -213,6 +213,22 @@ function moveRoom(direction) {
   }
 }
 
+document.addEventListener("keydown", (e) => {
+  switch (e.code) {
+    case "ArrowUp":
+      moveRoom(0); // Go to the first connected room
+      break;
+    case "ArrowDown":
+      moveRoom(1); // Go to the second connected room
+      break;
+    case "ArrowLeft":
+      moveRoom(2); // Go to the third connected room
+      break;
+    case "ArrowRight":
+      moveRoom(3); // Go to the fourth connected room
+      break;
+  }
+});
 
 document.addEventListener("keydown", (e) => {
   // Clue collection logic
