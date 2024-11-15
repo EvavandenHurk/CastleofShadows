@@ -91,6 +91,7 @@ const rooms = {
     clue: {
       text: "An inscription hinting at the coffin's location.",
       collected: false,
+    },
   },
   "Dungeon": {
     image: "Dungeon",
@@ -98,6 +99,7 @@ const rooms = {
     clue: {
       text: "A map fragment hidden in the wall.",
       collected: false,
+    },
   },
   "Dining Room": {
     image: "Dining Room",
@@ -105,6 +107,7 @@ const rooms = {
     clue: {
       text: "A dusty note mentioning an ancient ritual.",
       collected: false,
+    },
   },
   "Spooky Garden": {
     image: "Spooky Garden",
@@ -112,6 +115,7 @@ const rooms = {
     clue: {
       text: "An old statue points toward a hidden path.",
       collected: false,
+    },
   },
   "Weapon Room": {
     image: "Weapon Room",
@@ -119,6 +123,7 @@ const rooms = {
     clue: {
       text: "A sword with an engraved riddle.",
       collected: false,
+    },
   },
   "Cellar": {
     image: "Cellar",
@@ -126,6 +131,7 @@ const rooms = {
     clue: {
       text: "An ancient key hidden in a barrel.",
       collected: false,
+    },
   },
   "Attic": {
     image: "Attic",
@@ -133,6 +139,7 @@ const rooms = {
     clue: {
       text: "A journal with cryptic symbols.",
       collected: false,
+    },
   },
   "Library": {
     image: "Library",
@@ -140,8 +147,9 @@ const rooms = {
     clue: {
       text: "A tome describing the coffin's location.",
       collected: false,
+    },
   },
-}
+};
 
 function drawRoom(roomName) {
   const room = rooms[roomName];
