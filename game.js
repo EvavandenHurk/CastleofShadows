@@ -191,7 +191,6 @@ function drawRoom(roomName) {
       canvasHeight / 10
     );
   }
-}
 
 
 // Move between rooms
