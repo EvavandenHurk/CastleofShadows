@@ -31,7 +31,7 @@ window.addEventListener("resize", resizeCanvas);
 
 // Initialize canvas size
 resizeCanvas();
-
+drawRoom(gameState.currentRoom);
 
 // Load assets
 const images = {
