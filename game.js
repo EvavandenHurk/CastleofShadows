@@ -7,15 +7,15 @@ canvas.height = 600;
 
 // Load assets
 const images = {
-  "Throne Room": loadImage("path/to/throne_room_image.png"),
-  "Dungeon": loadImage("path/to/dungeon_image.png"),
-  "Entry Hallway": loadImage("path/to/entry_hallway_image.png"),
-  "Dining Room": loadImage("path/to/dining_room_image.png"),
-  "Spooky Garden": loadImage("path/to/spooky_garden_image.png"),
-  "Weapon Room": loadImage("path/to/weapon_room_image.png"),
-  "Cellar": loadImage("path/to/cellar_image.png"),
-  "Attic": loadImage("path/to/attic_image.png"),
-  "Library": loadImage("path/to/library_image.png"),
+  "Throne Room": loadImage("images/ThroneRoom.tiff"),
+  "Dungeon": loadImage("images/Dungeo.tiff"),
+  "Entry Hallway": loadImage("images/Hallway.tiff"),
+  "Dining Room": loadImage("images/DiningRoom.tiff"),
+  "Spooky Garden": loadImage("images/Garden.tiff"),
+  "Weapon Room": loadImage("images/WeaponRoom.tiff"),
+  "Cellar": loadImage("images/Cellar.tiff"),
+  "Attic": loadImage("images/Attick.tiff"),
+  "Library": loadImage("images/Library.tiff"),
 };
 
 const gameState = {
