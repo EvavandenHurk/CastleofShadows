@@ -35,15 +35,15 @@ resizeCanvas();
 
 // Load assets
 const images = {
-  "Throne Room": loadImage("images/ThroneRoom.tiff"),
-  "Dungeon": loadImage("images/Dungeo.tiff"),
-  "Entry Hallway": loadImage("images/Hallway.tiff"),
-  "Dining Room": loadImage("images/DiningRoom.tiff"),
-  "Spooky Garden": loadImage("images/Garden.tiff"),
-  "Weapon Room": loadImage("images/WeaponRoom.tiff"),
-  "Cellar": loadImage("images/Cellar.tiff"),
-  "Attic": loadImage("images/Attick.tiff"),
-  "Library": loadImage("images/Library.tiff"),
+  "Throne Room": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/ThroneRoom.png"),
+  "Dungeon": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Dungeon.png"),
+  "Entry Hallway": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Hallway.png"),
+  "Dining Room": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/DiningRoom.png"),
+  "Spooky Garden": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Garden.png"),
+  "Weapon Room": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/WeaponRoom.png"),
+  "Cellar": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Cellar.png"),
+  "Attic": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Attick.png"),
+  "Library": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Library.png"),
 };
 
 const gameState = {
