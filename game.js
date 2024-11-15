@@ -141,7 +141,7 @@ const rooms = {
       text: "A tome describing the coffin's location.",
       collected: false,
   },
-};
+}
 
 function drawRoom(roomName) {
   const room = rooms[roomName];
