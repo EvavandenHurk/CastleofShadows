@@ -26,12 +26,36 @@ function resizeCanvas() {
   drawRoom(gameState.currentRoom);
 }
 
-// Resize canvas on window resize
-window.addEventListener("resize", resizeCanvas);
+// Initialize game state
+const gameState = {
+  currentRoom: "Entry Hallway",
+  cluesFound: 0,
+  visitedRooms: {},
+};
 
-// Initialize canvas size
-resizeCanvas();
-drawRoom(gameState.currentRoom);
+// Canvas resize function
+function resizeCanvas() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const ASPECT_RATIO = 4 / 3;
+
+  if (windowWidth / windowHeight > ASPECT_RATIO) {
+    canvas.height = windowHeight;
+    canvas.width = canvas.height * ASPECT_RATIO;
+  } else {
+    canvas.width = windowWidth;
+    canvas.height = canvas.width / ASPECT_RATIO;
+  }
+
+  drawRoom(gameState.currentRoom);
+}
+
+// Event listeners and initial setup
+window.onload = () => {
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+};
+
 
 // Load assets
 const images = {
@@ -46,11 +70,7 @@ const images = {
   "Library": loadImage("https://raw.githubusercontent.com/EvavandenHurk/CastleofShadows/refs/heads/main/images/Library.png"),
 };
 
-const gameState = {
-  currentRoom: "Entry Hallway",
-  cluesFound: 0,
-  visitedRooms: {},
-};
+
 
 // Helper to load images
 function loadImage(src) {
